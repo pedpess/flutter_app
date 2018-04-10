@@ -26,6 +26,7 @@ class ChatMessage extends StatelessWidget {
   final AnimationController animationController;
 
   final String _name = 'Pedro';
+
   ChatMessage({this.text, this.animationController});
 
   @override
@@ -46,7 +47,10 @@ class ChatMessage extends StatelessWidget {
               new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    new Text(_name, style: Theme.of(context).textTheme.subhead),
+                    new Text(_name, style: Theme
+                        .of(context)
+                        .textTheme
+                        .subhead),
                     new Container(
                       margin: const EdgeInsets.only(top: 5.0),
                       child: new Text(text),
@@ -54,8 +58,7 @@ class ChatMessage extends StatelessWidget {
                   ])
             ],
           ),
-        )
-    );
+        ));
   }
 }
 
@@ -66,36 +69,36 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
 
   Widget _buildTextComposer() {
     return new IconTheme(
-        data: new IconThemeData(color: Theme.of(context).accentColor),
+        data: new IconThemeData(color: Theme
+            .of(context)
+            .accentColor),
         child: new Container(
             margin: const EdgeInsets.symmetric(horizontal: 8.0),
             child: new Row(
               children: <Widget>[
                 new Flexible(
                     child: new TextField(
-                  controller: _textController,
-                  onChanged: (String text) {
-                    setState(() {
-                      _isComposing = text.length > 0;
-                    });
-                  },
-                  onSubmitted: _handleSubmitted,
-                  decoration:
+                      controller: _textController,
+                      onChanged: (String text) {
+                        setState(() {
+                          _isComposing = text.length > 0;
+                        });
+                      },
+                      onSubmitted: _handleSubmitted,
+                      decoration:
                       new InputDecoration.collapsed(hintText: 'Send a message'),
-                )),
+                    )),
                 new Container(
                   margin: new EdgeInsets.symmetric(horizontal: 4.0),
                   child: new IconButton(
-                      icon: new Icon(Icons.send),
-                      onPressed: _isComposing
+                    icon: new Icon(Icons.send),
+                    onPressed: _isComposing
                         ? () => _handleSubmitted(_textController.text)
                         : null,
                   ),
                 )
               ],
-            )
-        )
-    );
+            )));
   }
 
   @override
@@ -116,7 +119,9 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           ),
           new Divider(height: 1.0),
           new Container(
-            decoration: new BoxDecoration(color: Theme.of(context).cardColor),
+            decoration: new BoxDecoration(color: Theme
+                .of(context)
+                .cardColor),
             child: _buildTextComposer(),
           )
         ],
@@ -134,9 +139,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     ChatMessage message = new ChatMessage(
       text: text,
       animationController: new AnimationController(
-          vsync: this,
-          duration: new Duration(milliseconds: 700)
-      ),
+          vsync: this, duration: new Duration(milliseconds: 700)),
     );
 
     setState(() {
